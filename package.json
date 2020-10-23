@@ -15,7 +15,7 @@
   },
     "repository": {
       "type": "git",
-      "url": "https://github.com/ashleygwilliams/my_package.git"
+      "url": "https://github.com/riohifi/next-js-suggest-input.git"
     },
      "keywords": [
     "input tag",
@@ -33,7 +33,7 @@
     "main": "./build/umd/index.min.js",
     "module": "./build/module/index.js",
     "bugs": {
-      "url": "https://github.com/ashleygwilliams/my_package/issues"
+      "url": "https://github.com/riohifi/next-js-suggest-input/"
     },
-    "homepage": "https://github.com/ashleygwilliams/my_package"
+    "homepage": "https://github.com/riohifi/next-js-suggest-input/"
   }
