@@ -3,7 +3,7 @@
   {
     "name": "next-js-suggest-input",
     "description": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "scripts": {
     "build": "rm -rf build && npm run module-build && npm run umd-build && npm run umd-minify && npm run scss-build",
     "example": "parcel ./example/index.html",
