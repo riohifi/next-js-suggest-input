@@ -1,0 +1,39 @@
+
+
+  {
+    "name": "next-js-suggest-input",
+    "description": "",
+    "version": "1.0.0",
+    "scripts": {
+    "build": "rm -rf build && npm run module-build && npm run umd-build && npm run umd-minify && npm run scss-build",
+    "example": "parcel ./example/index.html",
+    "module-build": "tsc",
+    "push": "git push origin master --tags && npm publish",
+    "scss-build": "sass src/styles/index.scss build/index.css --style compressed --source-map",
+    "umd-build": "rollup ./build/module/index.js --format umd -m --name 'ReactTagInput' -g react:React --file ./build/umd/index.js",
+    "umd-minify": "uglifyjs ./build/umd/index.js -o ./build/umd/index.min.js --source-map url"
+  },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ashleygwilliams/my_package.git"
+    },
+     "keywords": [
+    "input tag",
+    "tag input",
+    "react input tag",
+    "react tag input component",
+    "react tag input",
+    "next-js input tag",
+    "next-js tag input component",
+    "next-js tag input"
+  ],
+    "author": "RiO",
+    "license": "MIT",
+    "private": false,
+    "main": "./build/umd/index.min.js",
+    "module": "./build/module/index.js",
+    "bugs": {
+      "url": "https://github.com/ashleygwilliams/my_package/issues"
+    },
+    "homepage": "https://github.com/ashleygwilliams/my_package"
+  }
