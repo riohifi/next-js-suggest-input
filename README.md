@@ -1,6 +1,7 @@
 # React Tag Input With auto Suggest
 
  import ReactTagInput from "next-js-suggest-input";
+ 
  import "next-js-suggest-input/build/react-tag-input.css"
 
 
