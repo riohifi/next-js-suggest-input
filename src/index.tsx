@@ -4,7 +4,7 @@ import {classSelectors} from "./utils/selectors";
 
 type Tags = string[];
 
-export interface ReactTagInputProps {
+export interface NextTagInputProps {
   tags: Tags;
   onChange: (tags: Tags) => void;
   placeholder?: string;
@@ -13,15 +13,17 @@ export interface ReactTagInputProps {
   editable?: boolean;
   readOnly?: boolean;
   removeOnBackspace?: boolean;
+  suggestions?: any
 }
 
 interface State {
   input: string;
+  suggestions: any;
 }
 
-export default class ReactTagInput extends React.Component<ReactTagInputProps, State> {
+export default class NextTagInput extends React.Component<NextTagInputProps, State> {
 
-  state = { input: "" };
+  state = { input: "", suggestions: "" };
 
   // Ref for input element
   inputRef: React.RefObject<HTMLInputElement> = React.createRef();
@@ -33,8 +35,16 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
   onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     const { input } = this.state;
-    const { validator, removeOnBackspace } = this.props;
+    const { validator, removeOnBackspace, suggestions } = this.props;
 
+    var value = input.toLowerCase();
+        value = value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    var queryRegExp = new RegExp('^' + value, 'i');
+
+    const suggest = suggestions.filter(function(item:any) { return queryRegExp.test(item); })
+    
+    if(value.length > 0) this.setState({ suggestions: suggest.toString() });
+    // console.log(suggest)
     // On enter
     if (e.keyCode === 13 || e.keyCode === 188) {
 
@@ -42,7 +52,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
       e.preventDefault();
 
       // If input is blank, do nothing
-      if (input === "") { return; }
+      if (input === "") {this.setState({ suggestions: "" }); return; }
 
       // Check if input is valid
       const valid = validator !== undefined ? validator(input) : true;
@@ -73,13 +83,14 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
     const tags = [ ...this.props.tags ];
     tags.push(value);
     this.props.onChange(tags);
-    this.setState({ input: "" });
+    this.setState({ input: "", suggestions: "" });
   }
 
   removeTag = (i: number) => {
     const tags = [ ...this.props.tags ];
     tags.splice(i, 1);
     this.props.onChange(tags);
+    this.setState({ suggestions: "" });
   }
 
   updateTag = (i: number, value: string) => {
@@ -126,6 +137,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
             onKeyDown={this.onInputKeyDown}
           />
         }
+        <div id="complete">{this.state.suggestions ? this.state.suggestions : ''}</div>
       </div>
     );
 

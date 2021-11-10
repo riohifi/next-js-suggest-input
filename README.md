@@ -1,19 +1,41 @@
-# React Tag Input With auto Suggest
+# Nextjs / React Tag Input With auto Suggest
 
- import ReactTagInput from "next-js-suggest-input";
- 
+## Import Package 
+ ```javascript
+ import NextTagInputProps from "next-js-suggest-input";
+ ```
+ ## import CSS inside _app.js
+ ```javascript
  import "next-js-suggest-input/build/react-tag-input.css"
+ ```
 
+<br />
 
-const [tags, setTags] = useState([])
+## Component `props`
 
-const suggestions = ["Apple", "Air", "Asia", "Mumbai", "Kolkata", "Banana"]
+| Property             | Type                          | Description                                          |
+| -------------------- | ----------------------------- | ---------------------------------------------------- |
+| `tags`               | `State`                       | useState                                             |
+| `placeholder`        | `string`                      | Your Subject                                         |
+| `maxTags`            | `number`                      | Total Number of tags                                 |
+| `editable`           | `boolean`                     | `true / false`                                       |
+| `readOnly`           | `boolean`                     | `true / false`                                       |
+| `removeOnBackspace`  | `boolean`                     | `true / false`                                       |
+| `suggestions`        | `object`                      | `["Apple",  "Mumbai", "Kolkata", "Banana"]`          |
+| `onChange`           | `function<event>`             | `onChange` event handler for form elements           |
 
+<br />
+
+## Demo Example
+```javascript
 const example = () => {
+
+    const [tags, setTags] = useState([])
+    const suggestions = ["Apple", "Air", "Asia", "Mumbai", "Kolkata", "Banana"]
 	
 	return(
 		<>
-		 <ReactTagInput
+		 <NextTagInputProps
               tags={tags}
               placeholder="Your Subject"
               maxTags={10}
@@ -28,4 +50,8 @@ const example = () => {
 }
 
 export default example
+
+```
+
+
 

@@ -3,9 +3,9 @@
   {
     "name": "next-js-suggest-input",
     "description": "",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "scripts": {
-    "build": "rm -rf build && npm run module-build && npm run umd-build && npm run umd-minify && npm run scss-build",
+    "build": "npm run module-build && npm run umd-build && npm run umd-minify && npm run scss-build",
     "example": "parcel ./example/index.html",
     "module-build": "tsc",
     "push": "git push origin master --tags && npm publish",

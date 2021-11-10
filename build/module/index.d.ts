@@ -1,6 +1,6 @@
 import React from "react";
 declare type Tags = string[];
-export interface ReactTagInputProps {
+export interface NextTagInputProps {
     tags: Tags;
     onChange: (tags: Tags) => void;
     placeholder?: string;
@@ -9,13 +9,16 @@ export interface ReactTagInputProps {
     editable?: boolean;
     readOnly?: boolean;
     removeOnBackspace?: boolean;
+    suggestions?: any;
 }
 interface State {
     input: string;
+    suggestions: any;
 }
-export default class ReactTagInput extends React.Component<ReactTagInputProps, State> {
+export default class NextTagInput extends React.Component<NextTagInputProps, State> {
     state: {
         input: string;
+        suggestions: string;
     };
     inputRef: React.RefObject<HTMLInputElement>;
     onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

@@ -1,10 +1,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react')) :
     typeof define === 'function' && define.amd ? define(['react'], factory) :
-    (global = global || self, global.ReactTagInput = factory(global.React));
-}(this, function (React) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.ReactTagInput = factory(global.React));
+})(this, (function (React) { 'use strict';
 
-    React = React && React.hasOwnProperty('default') ? React['default'] : React;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
     var classSelectors = {
         wrapper: "react-tag-input",
@@ -37,21 +39,23 @@
         return escapeHtml(removeLineBreaks(value));
     }
 
-    var __extends = (undefined && undefined.__extends) || (function () {
+    var __extends$2 = (undefined && undefined.__extends) || (function () {
         var extendStatics = function (d, b) {
             extendStatics = Object.setPrototypeOf ||
                 ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+                function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
             return extendStatics(d, b);
         };
         return function (d, b) {
+            if (typeof b !== "function" && b !== null)
+                throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
             extendStatics(d, b);
             function __() { this.constructor = d; }
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
     var ContentEditable = (function (_super) {
-        __extends(ContentEditable, _super);
+        __extends$2(ContentEditable, _super);
         function ContentEditable() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.focused = false;
@@ -120,19 +124,21 @@
         };
         ContentEditable.prototype.render = function () {
             var _a = this.props, value = _a.value, className = _a.className, innerEditableRef = _a.innerEditableRef;
-            return (React.createElement("div", { ref: innerEditableRef, className: className, contentEditable: true, onPaste: this.onPaste, onFocus: this.onFocus, onBlur: this.onBlur, onKeyDown: this.onKeyDown, dangerouslySetInnerHTML: { __html: safeHtmlString(value) } }));
+            return (React__default["default"].createElement("div", { ref: innerEditableRef, className: className, contentEditable: true, onPaste: this.onPaste, onFocus: this.onFocus, onBlur: this.onBlur, onKeyDown: this.onKeyDown, dangerouslySetInnerHTML: { __html: safeHtmlString(value) } }));
         };
         return ContentEditable;
-    }(React.Component));
+    }(React__default["default"].Component));
 
     var __extends$1 = (undefined && undefined.__extends) || (function () {
         var extendStatics = function (d, b) {
             extendStatics = Object.setPrototypeOf ||
                 ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+                function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
             return extendStatics(d, b);
         };
         return function (d, b) {
+            if (typeof b !== "function" && b !== null)
+                throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
             extendStatics(d, b);
             function __() { this.constructor = d; }
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -142,7 +148,7 @@
         __extends$1(Tag, _super);
         function Tag() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.innerEditableRef = React.createRef();
+            _this.innerEditableRef = React__default["default"].createRef();
             _this.remove = function () { return _this.props.remove(_this.props.index); };
             return _this;
         }
@@ -150,42 +156,60 @@
             var _a = this.props, value = _a.value, index = _a.index, editable = _a.editable, inputRef = _a.inputRef, validator = _a.validator, update = _a.update, readOnly = _a.readOnly, removeOnBackspace = _a.removeOnBackspace;
             var tagRemoveClass = !readOnly ?
                 classSelectors.tagRemove : classSelectors.tagRemove + " " + classSelectors.tagRemoveReadOnly;
-            return (React.createElement("div", { className: classSelectors.tag },
-                !editable && React.createElement("div", { className: classSelectors.tagContent }, value),
-                editable && (React.createElement(ContentEditable, { value: value, inputRef: inputRef, innerEditableRef: this.innerEditableRef, className: classSelectors.tagContent, change: function (newValue) { return update(index, newValue); }, remove: this.remove, validator: validator, removeOnBackspace: removeOnBackspace })),
-                React.createElement("div", { className: tagRemoveClass, onClick: this.remove })));
+            return (React__default["default"].createElement("div", { className: classSelectors.tag },
+                !editable && React__default["default"].createElement("div", { className: classSelectors.tagContent }, value),
+                editable && (React__default["default"].createElement(ContentEditable, { value: value, inputRef: inputRef, innerEditableRef: this.innerEditableRef, className: classSelectors.tagContent, change: function (newValue) { return update(index, newValue); }, remove: this.remove, validator: validator, removeOnBackspace: removeOnBackspace })),
+                React__default["default"].createElement("div", { className: tagRemoveClass, onClick: this.remove })));
         };
         return Tag;
-    }(React.Component));
+    }(React__default["default"].Component));
 
-    var __extends$2 = (undefined && undefined.__extends) || (function () {
+    var __extends = (undefined && undefined.__extends) || (function () {
         var extendStatics = function (d, b) {
             extendStatics = Object.setPrototypeOf ||
                 ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+                function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
             return extendStatics(d, b);
         };
         return function (d, b) {
+            if (typeof b !== "function" && b !== null)
+                throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
             extendStatics(d, b);
             function __() { this.constructor = d; }
             d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
     })();
-    var ReactTagInput = (function (_super) {
-        __extends$2(ReactTagInput, _super);
-        function ReactTagInput() {
+    var __spreadArray = (undefined && undefined.__spreadArray) || function (to, from, pack) {
+        if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+            if (ar || !(i in from)) {
+                if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+                ar[i] = from[i];
+            }
+        }
+        return to.concat(ar || Array.prototype.slice.call(from));
+    };
+    var NextTagInput = (function (_super) {
+        __extends(NextTagInput, _super);
+        function NextTagInput() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.state = { input: "" };
-            _this.inputRef = React.createRef();
+            _this.state = { input: "", suggestions: "" };
+            _this.inputRef = React__default["default"].createRef();
             _this.onInputChange = function (e) {
                 _this.setState({ input: e.target.value });
             };
             _this.onInputKeyDown = function (e) {
                 var input = _this.state.input;
-                var _a = _this.props, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace;
+                var _a = _this.props, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace, suggestions = _a.suggestions;
+                var value = input.toLowerCase();
+                value = value.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+                var queryRegExp = new RegExp('^' + value, 'i');
+                var suggest = suggestions.filter(function (item) { return queryRegExp.test(item); });
+                if (value.length > 0)
+                    _this.setState({ suggestions: suggest.toString() });
                 if (e.keyCode === 13 || e.keyCode === 188) {
                     e.preventDefault();
                     if (input === "") {
+                        _this.setState({ suggestions: "" });
                         return;
                     }
                     var valid = validator !== undefined ? validator(input) : true;
@@ -202,39 +226,41 @@
                 }
             };
             _this.addTag = function (value) {
-                var tags = _this.props.tags.slice();
+                var tags = __spreadArray([], _this.props.tags, true);
                 tags.push(value);
                 _this.props.onChange(tags);
-                _this.setState({ input: "" });
+                _this.setState({ input: "", suggestions: "" });
             };
             _this.removeTag = function (i) {
-                var tags = _this.props.tags.slice();
+                var tags = __spreadArray([], _this.props.tags, true);
                 tags.splice(i, 1);
                 _this.props.onChange(tags);
+                _this.setState({ suggestions: "" });
             };
             _this.updateTag = function (i, value) {
-                var tags = _this.props.tags.slice();
+                var tags = __spreadArray([], _this.props.tags, true);
                 tags[i] = value;
                 _this.props.onChange(tags);
             };
             return _this;
         }
-        ReactTagInput.prototype.render = function () {
+        NextTagInput.prototype.render = function () {
             var _this = this;
             var input = this.state.input;
             var _a = this.props, tags = _a.tags, placeholder = _a.placeholder, maxTags = _a.maxTags, editable = _a.editable, readOnly = _a.readOnly, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace;
             var maxTagsReached = maxTags !== undefined ? tags.length >= maxTags : false;
             var isEditable = readOnly ? false : (editable || false);
             var showInput = !readOnly && !maxTagsReached;
-            return (React.createElement("div", { className: classSelectors.wrapper },
-                tags.map(function (tag, i) { return (React.createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace })); }),
+            return (React__default["default"].createElement("div", { className: classSelectors.wrapper },
+                tags.map(function (tag, i) { return (React__default["default"].createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace })); }),
                 showInput &&
-                    React.createElement("input", { ref: this.inputRef, value: input, className: classSelectors.input, placeholder: placeholder || "Type and press enter", onChange: this.onInputChange, onKeyDown: this.onInputKeyDown })));
+                    React__default["default"].createElement("input", { ref: this.inputRef, value: input, className: classSelectors.input, placeholder: placeholder || "Type and press enter", onChange: this.onInputChange, onKeyDown: this.onInputKeyDown }),
+                React__default["default"].createElement("div", { id: "complete" }, this.state.suggestions ? this.state.suggestions : '')));
         };
-        return ReactTagInput;
-    }(React.Component));
+        return NextTagInput;
+    }(React__default["default"].Component));
 
-    return ReactTagInput;
+    return NextTagInput;
 
 }));
 //# sourceMappingURL=index.js.map

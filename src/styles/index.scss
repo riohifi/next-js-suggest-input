@@ -83,7 +83,7 @@ $reactTagMarginPadding: 0.1875em;
 
     font-size: $reactTagFontSize - 0.15;
     cursor: pointer;
-    background: darken($reactTagColorGray, 5%);
+    background: 'tomato';
     border-top-right-radius: $reactTagBorderRadius;
     border-bottom-right-radius: $reactTagBorderRadius;
 
@@ -111,6 +111,30 @@ $reactTagMarginPadding: 0.1875em;
         width: 0;
       }
     }
+
+    #input,
+#complete{
+width: 100%;
+    bottom: 3px;
+    /* right: 0; */
+    padding: 0 8px;
+    border-top: 2px solid #1c9dea;
+    cursor: text;
+    position: relative;
+  cursor: text;
+}
+#input:focus,
+#complete:focus{
+  outline: none;
+  border-color: #aaa;
+}
+#input {
+  color: #333;
+  background-color: transparent;
+}
+#complete {
+  color: #999;
+}
 
   }
 
