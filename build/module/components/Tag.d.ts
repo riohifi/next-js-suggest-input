@@ -9,6 +9,7 @@ interface Props {
     remove: (i: number) => void;
     validator?: (val: string) => boolean;
     removeOnBackspace?: boolean;
+    tagStyle: {};
 }
 export declare class Tag extends React.Component<Props> {
     innerEditableRef: React.RefObject<HTMLDivElement>;

@@ -2,6 +2,8 @@ import React from "react";
 import {classSelectors} from "../utils/selectors";
 import {ContentEditable} from "./ContentEditable";
 
+
+
 interface Props {
   value: string;
   index: number;
@@ -12,6 +14,7 @@ interface Props {
   remove: (i: number) => void;
   validator?: (val: string) => boolean;
   removeOnBackspace?: boolean;
+  tagStyle: {}
 }
 
 export class Tag extends React.Component<Props> {
@@ -22,13 +25,13 @@ export class Tag extends React.Component<Props> {
 
   render() {
 
-    const { value, index, editable, inputRef, validator, update, readOnly, removeOnBackspace } = this.props;
+    const { value, index, editable, inputRef, validator, update, readOnly, removeOnBackspace, tagStyle } = this.props;
 
     const tagRemoveClass = !readOnly ?
       classSelectors.tagRemove : `${classSelectors.tagRemove} ${classSelectors.tagRemoveReadOnly}`;
 
     return (
-      <div className={classSelectors.tag}>
+      <div className={classSelectors.tag} style={tagStyle}>
         {!editable && <div className={classSelectors.tagContent}>{value}</div>}
         {editable && (
           <ContentEditable

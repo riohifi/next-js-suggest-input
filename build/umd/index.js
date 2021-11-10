@@ -153,10 +153,10 @@
             return _this;
         }
         Tag.prototype.render = function () {
-            var _a = this.props, value = _a.value, index = _a.index, editable = _a.editable, inputRef = _a.inputRef, validator = _a.validator, update = _a.update, readOnly = _a.readOnly, removeOnBackspace = _a.removeOnBackspace;
+            var _a = this.props, value = _a.value, index = _a.index, editable = _a.editable, inputRef = _a.inputRef, validator = _a.validator, update = _a.update, readOnly = _a.readOnly, removeOnBackspace = _a.removeOnBackspace, tagStyle = _a.tagStyle;
             var tagRemoveClass = !readOnly ?
                 classSelectors.tagRemove : classSelectors.tagRemove + " " + classSelectors.tagRemoveReadOnly;
-            return (React__default["default"].createElement("div", { className: classSelectors.tag },
+            return (React__default["default"].createElement("div", { className: classSelectors.tag, style: tagStyle },
                 !editable && React__default["default"].createElement("div", { className: classSelectors.tagContent }, value),
                 editable && (React__default["default"].createElement(ContentEditable, { value: value, inputRef: inputRef, innerEditableRef: this.innerEditableRef, className: classSelectors.tagContent, change: function (newValue) { return update(index, newValue); }, remove: this.remove, validator: validator, removeOnBackspace: removeOnBackspace })),
                 React__default["default"].createElement("div", { className: tagRemoveClass, onClick: this.remove })));
@@ -247,12 +247,13 @@
         NextTagInput.prototype.render = function () {
             var _this = this;
             var input = this.state.input;
-            var _a = this.props, tags = _a.tags, placeholder = _a.placeholder, maxTags = _a.maxTags, editable = _a.editable, readOnly = _a.readOnly, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace;
+            var _a = this.props, tags = _a.tags, placeholder = _a.placeholder, maxTags = _a.maxTags, editable = _a.editable, readOnly = _a.readOnly, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace, tagStyle = _a.tagStyle;
             var maxTagsReached = maxTags !== undefined ? tags.length >= maxTags : false;
             var isEditable = readOnly ? false : (editable || false);
             var showInput = !readOnly && !maxTagsReached;
+            var TagStyle = tagStyle !== undefined ? tagStyle : {};
             return (React__default["default"].createElement("div", { className: classSelectors.wrapper },
-                tags.map(function (tag, i) { return (React__default["default"].createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace })); }),
+                tags.map(function (tag, i) { return (React__default["default"].createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace, tagStyle: TagStyle })); }),
                 showInput &&
                     React__default["default"].createElement("input", { ref: this.inputRef, value: input, className: classSelectors.input, placeholder: placeholder || "Type and press enter", onChange: this.onInputChange, onKeyDown: this.onInputKeyDown }),
                 React__default["default"].createElement("div", { id: "complete" }, this.state.suggestions ? this.state.suggestions : '')));

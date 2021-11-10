@@ -3,6 +3,11 @@ import {Tag} from "./components/Tag";
 import {classSelectors} from "./utils/selectors";
 
 type Tags = string[];
+type TStyle = {
+  tagBgColor: '#1c9dea',
+  tagColor: '#fff',
+  tagFontSize: '.85em'
+};
 
 export interface NextTagInputProps {
   tags: Tags;
@@ -13,7 +18,8 @@ export interface NextTagInputProps {
   editable?: boolean;
   readOnly?: boolean;
   removeOnBackspace?: boolean;
-  suggestions?: any
+  suggestions?: any;
+  tagStyle?: TStyle;
 }
 
 interface State {
@@ -103,13 +109,17 @@ export default class NextTagInput extends React.Component<NextTagInputProps, Sta
 
     const { input } = this.state;
 
-    const { tags, placeholder, maxTags, editable, readOnly, validator, removeOnBackspace } = this.props;
+    const { tags, placeholder, maxTags, editable, readOnly, validator, removeOnBackspace, tagStyle } = this.props;
 
     const maxTagsReached = maxTags !== undefined ? tags.length >= maxTags : false;
 
     const isEditable = readOnly ? false : (editable || false);
 
     const showInput = !readOnly && !maxTagsReached;
+
+    const TagStyle = tagStyle !== undefined ? tagStyle : {};
+
+    // console.log('tags', tagStyle)
 
     return (
       <div className={classSelectors.wrapper}>
@@ -125,6 +135,7 @@ export default class NextTagInput extends React.Component<NextTagInputProps, Sta
             remove={this.removeTag}
             validator={validator}
             removeOnBackspace={removeOnBackspace}
+            tagStyle={TagStyle}
           />
         ))}
         {showInput &&

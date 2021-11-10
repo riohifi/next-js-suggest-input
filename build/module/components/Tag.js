@@ -25,10 +25,10 @@ var Tag = (function (_super) {
         return _this;
     }
     Tag.prototype.render = function () {
-        var _a = this.props, value = _a.value, index = _a.index, editable = _a.editable, inputRef = _a.inputRef, validator = _a.validator, update = _a.update, readOnly = _a.readOnly, removeOnBackspace = _a.removeOnBackspace;
+        var _a = this.props, value = _a.value, index = _a.index, editable = _a.editable, inputRef = _a.inputRef, validator = _a.validator, update = _a.update, readOnly = _a.readOnly, removeOnBackspace = _a.removeOnBackspace, tagStyle = _a.tagStyle;
         var tagRemoveClass = !readOnly ?
             classSelectors.tagRemove : classSelectors.tagRemove + " " + classSelectors.tagRemoveReadOnly;
-        return (React.createElement("div", { className: classSelectors.tag },
+        return (React.createElement("div", { className: classSelectors.tag, style: tagStyle },
             !editable && React.createElement("div", { className: classSelectors.tagContent }, value),
             editable && (React.createElement(ContentEditable, { value: value, inputRef: inputRef, innerEditableRef: this.innerEditableRef, className: classSelectors.tagContent, change: function (newValue) { return update(index, newValue); }, remove: this.remove, validator: validator, removeOnBackspace: removeOnBackspace })),
             React.createElement("div", { className: tagRemoveClass, onClick: this.remove })));

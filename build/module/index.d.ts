@@ -1,5 +1,10 @@
 import React from "react";
 declare type Tags = string[];
+declare type TStyle = {
+    tagBgColor: '#1c9dea';
+    tagColor: '#fff';
+    tagFontSize: '.85em';
+};
 export interface NextTagInputProps {
     tags: Tags;
     onChange: (tags: Tags) => void;
@@ -10,6 +15,7 @@ export interface NextTagInputProps {
     readOnly?: boolean;
     removeOnBackspace?: boolean;
     suggestions?: any;
+    tagStyle?: TStyle;
 }
 interface State {
     input: string;

@@ -23,6 +23,7 @@
 | `removeOnBackspace`  | `boolean`                     | `true / false`                                       |
 | `suggestions`        | `object`                      | `["Apple",  "Mumbai", "Kolkata", "Banana"]`          |
 | `onChange`           | `function<event>`             | `onChange` event handler for form elements           |
+| `tagStyle`           | `JSX Style Components`        | ` background: '#ff0000', color: '#fff', fontSize: '.85em'`|
 
 <br />
 
@@ -33,6 +34,9 @@ const example = () => {
     const [tags, setTags] = useState([])
     const suggestions = ["Apple", "Air", "Asia", "Mumbai", "Kolkata", "Banana"]
 	
+    // tag style
+    const TStyle = { background: '#ff0000', color: '#fff', fontSize: '.85em' };
+
 	return(
 		<>
 		 <NextTagInputProps
@@ -44,6 +48,7 @@ const example = () => {
               removeOnBackspace={true}
               suggestions={suggestions}
               onChange={(newTags) => setTags(newTags)}
+              tagStyle={TStyle}
           />
 		</>
 		)

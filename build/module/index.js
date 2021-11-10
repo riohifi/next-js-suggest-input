@@ -84,12 +84,13 @@ var NextTagInput = (function (_super) {
     NextTagInput.prototype.render = function () {
         var _this = this;
         var input = this.state.input;
-        var _a = this.props, tags = _a.tags, placeholder = _a.placeholder, maxTags = _a.maxTags, editable = _a.editable, readOnly = _a.readOnly, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace;
+        var _a = this.props, tags = _a.tags, placeholder = _a.placeholder, maxTags = _a.maxTags, editable = _a.editable, readOnly = _a.readOnly, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace, tagStyle = _a.tagStyle;
         var maxTagsReached = maxTags !== undefined ? tags.length >= maxTags : false;
         var isEditable = readOnly ? false : (editable || false);
         var showInput = !readOnly && !maxTagsReached;
+        var TagStyle = tagStyle !== undefined ? tagStyle : {};
         return (React.createElement("div", { className: classSelectors.wrapper },
-            tags.map(function (tag, i) { return (React.createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace })); }),
+            tags.map(function (tag, i) { return (React.createElement(Tag, { key: i, value: tag, index: i, editable: isEditable, readOnly: readOnly || false, inputRef: _this.inputRef, update: _this.updateTag, remove: _this.removeTag, validator: validator, removeOnBackspace: removeOnBackspace, tagStyle: TagStyle })); }),
             showInput &&
                 React.createElement("input", { ref: this.inputRef, value: input, className: classSelectors.input, placeholder: placeholder || "Type and press enter", onChange: this.onInputChange, onKeyDown: this.onInputKeyDown }),
             React.createElement("div", { id: "complete" }, this.state.suggestions ? this.state.suggestions : '')));
