@@ -20,12 +20,21 @@ function Example() {
   const [tags, setTags] = React.useState<string[]>(["machine-1", "machine-2"]);
   const [settings, setSettings] = React.useState(initialSettings);
   console.log(tags, settings);
+
+  const handleChange = (newTags: string[]) => {
+    if (tags.length > newTags.length) {
+      setTags(newTags);
+    } else if (!tags.includes(newTags[newTags.length - 1] as string)) {
+      setTags(newTags);
+    }
+  };
+
   return (
     <>
       <ReactTagInput
         {...settings}
         tags={tags}
-        onChange={(value) => setTags(value)}
+        onChange={handleChange}
       />
 
       <div className="form">

@@ -37,6 +37,14 @@ const example = () => {
     // tag style
     const TStyle = { background: '#ff0000', color: '#fff', fontSize: '.85em' };
 
+    const handleChange =(newTags: string[]) => {
+        if (tags.length > newTags.length) {
+        setTags(newTags);
+        } else if (!tags.includes(newTags[newTags.length - 1] as string)) {
+        setTags(newTags);
+        }
+    }
+    
 	return(
 		<>
 		 <NextTagInputProps
@@ -47,7 +55,7 @@ const example = () => {
               readOnly={false}
               removeOnBackspace={true}
               suggestions={suggestions}
-              onChange={(newTags) => setTags(newTags)}
+              onChange={handleChange}
               tagStyle={TStyle}
           />
 		</>
